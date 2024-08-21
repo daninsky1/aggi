@@ -13,12 +13,12 @@ namespace aggi {
         RowAccessor() :
             buffer{0}, start{0}, width{0}, height{0}, stride{0} { }
             
-        RowAccessor(T* buffer, T* start, uint32_t width, uint32_t height, int32_t  stride) :
+        RowAccessor(T* buffer, uint32_t width, uint32_t height, int32_t  stride) :
             buffer{0}, start{0}, width{0}, height{0}, stride{0} {
-            attach(buffer, start, width, height, stride);
+            attach(buffer, width, height, stride);
         }
         
-        attach(T* buffer, T* start, uint32_t width, uint32_t height, int32_t  stride) {
+        void attach(T* buffer, uint32_t width, uint32_t height, int32_t  stride) {
             this->buffer = this->start = buffer;
             this->width = width;
             this->height = height;
@@ -28,7 +28,7 @@ namespace aggi {
             }
         }
         
-        T* getBuffer()       const { return this->buffer; }
+        T* getBuffer()             { return this->buffer; }
         const T* getBuffer() const { return this->buffer; }
         uint32_t getWidth()  const { return this->width;  }
         uint32_t getHeight() const { return this->height; }
